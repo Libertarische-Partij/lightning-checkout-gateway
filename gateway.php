@@ -12,7 +12,7 @@ define('LNC_API_KEY', get_option('LNC_API_KEY'));
 define('LNC_URL', get_option('LNC_URL'));
 define('LNC_WEBHOOK_URL', get_option('LNC_WEBHOOK_URL'));
 define('LNC_DEFAULT_DESCRIPTION', get_option('LNC_DEFAULT_DESCRIPTION'));
-define('LNC_DEFAULT_AMOUNT', (float) get_option('LNC_DEFAULT_AMOUNT'));
+define('LNC_DEFAULT_AMOUNT', get_option('LNC_DEFAULT_AMOUNT'));
 define('LNC_DEFAULT_RETURNURL', get_option('LNC_DEFAULT_RETURNURL'));
 
 require_once(__DIR__ . '/includes/init.php');

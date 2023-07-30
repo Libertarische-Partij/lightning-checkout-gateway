@@ -3,7 +3,7 @@
 /*
 Plugin Name: Lightning Checkout Payment Gateway
 Description: Accept Bitcoin over Lightning instantly and with near to zero fees using the Lightning Checkout API
-Version: 0.2.0
+Version: 0.2.1
 Author: Rutger Weemhoff
 Author URI: https://github.com/rutgernation
 */

@@ -35,7 +35,7 @@ function render_template($tpl_name, $params = array()) {
  * @return float The converted float value.
  */
 function getFloatValueFromString($input) {
-    $numericalString = preg_replace('/[^0-9,.]/', '', $input);
+    $numericalString = preg_replace('/[^0-9,]/', '', $input);
     $numericalString = str_replace(',', '.', $numericalString);
     return floatval($numericalString);
 }

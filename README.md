@@ -25,14 +25,14 @@ Voeg de volgende shortcode toe aan een bericht, pagina of widget om de Lightning
 
 Je kan ook de volgende attributen gebruiken om specifieke betalingsdetails in te stellen:
 
-- `amount`: Het bedrag voor de betaling
+- `amount`: Het bedrag voor de betaling. NB: Gebruik Europese notatie, dus bijv. `1.500,00` of `12,50`.
 - `description`: De beschrijving van de betaling
 - `returnurl`: De URL waar gebruikers naartoe worden omgeleid na de betaling
 
 Bijvoorbeeld:
 
 ```
-[lightning_payment amount="0.50" description="Aanmelding" returnurl="https://www.voorbeeld.nl"]
+[lightning_payment amount="0,50" description="Aanmelding" returnurl="https://www.voorbeeld.nl"]
 ```
 
 ## Ondersteuning

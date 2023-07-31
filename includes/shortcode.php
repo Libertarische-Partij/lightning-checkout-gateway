@@ -89,7 +89,7 @@ function lightning_payment_shortcode($atts = []) {
     $amount = getFloatValueFromString($atts['amount']);
 
     $api = new LightningCheckoutAPI(LNC_API_KEY, LNC_URL, LNC_WEBHOOK_URL);
-    $invoiceData = $api->generateInvoice($amount, $atts['description'] . " (EUR " . $amount . ")");
+    $invoiceData = $api->generateInvoice($amount, $atts['description'] . " (" . $amount . " EUR)");
 
     enqueue_payment_script($atts['returnurl'], $invoiceData);
 

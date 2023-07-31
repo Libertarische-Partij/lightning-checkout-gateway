@@ -12,7 +12,7 @@
 		</button>
 	</div>
 	<div class="logo-section">
-		<small>Lightning Payment Processor</small><br>
+		<small>Bitcoin Payment Processor</small><br>
 		<a href="https://lightningcheckout.eu">
 			<img alt="Logo Lightning Checkout" src="/wp-content/plugins/lnc-gateway/assets/img/logo-lightningcheckout.png" height="25">
 		</a>

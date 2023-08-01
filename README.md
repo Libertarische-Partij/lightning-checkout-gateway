@@ -4,6 +4,7 @@ Lightning Checkout is een WordPress-plugin die de betalingsverwerking mogelijk m
 
 ## Functies
 - Gemakkelijk te integreren met elke WordPress-website via een shortcode
+- Werkt goed samen met de [product](https://docs.gravityforms.com/product/) en [totaal](https://docs.gravityforms.com/total/) velden in Gravity Forms
 - Ondersteunt aanpassingen van betalingsbedrag, beschrijving en terugkeer-URL via shortcode-attributen
 - Maakt gebruik van de Lightning Checkout API voor betalingsverwerking
 
@@ -34,6 +35,19 @@ Bijvoorbeeld:
 ```
 [lightning_payment amount="0,50" description="Aanmelding" returnurl="https://www.voorbeeld.nl"]
 ```
+
+## Gebruik met Gravity Forms
+Wanneer je een Gravity Form gebruikt met [producten](https://docs.gravityforms.com/product/) en een [totaal](https://docs.gravityforms.com/total/)-veld, kan je de Bitcoin Lightning betalingsafhandeling in de [Bevestiging](https://docs.gravityforms.com/category/getting-started/confirmations-getting-started/) plaatsen.
+
+Met behulp van een [merge tag](https://docs.gravityforms.com/category/user-guides/merge-tags-getting-started/) kan je het totaalbedrag als attribuut aan de shortcode toevoegen.
+
+Bijvoorbeeld:
+
+```
+[lightning_payment amount="{Total:1}"]
+```
+
+
 
 ## Ondersteuning
 Voor ondersteuning, open een nieuw issue op deze GitHub-repository.

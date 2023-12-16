@@ -1,27 +1,55 @@
-jQuery(document).ready(($) => {
-    const $invoiceText = $('#invoice_text');
+document.addEventListener("DOMContentLoaded", function (event) {
 
-    const checkPayment = () => {
-        $.ajax({
-            url: paymentData.check_payment_url,
-            data: { 'invoice_id': paymentData.order_id },
-            success: (response) => {
-                if (response['paid'] && injected_data['returnurl']) {
-                    window.location.replace(injected_data['returnurl']);
-                } else {
-                    setTimeout(checkPayment, 5000);
-                }
-            },
-            error: () => {
-                setTimeout(checkPayment, 5000);
-            },
-        });
+  // Functions
+
+  /**
+   * Copy the invoice_text to the clipboard.
+   */
+  const copyToClipboard = () => {
+    let textToCopy = document.getElementById('invoice_text').innerText;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        console.log('Copied to clipboard')
+      })
+    } else {
+      console.log('Browser Not compatible')
     }
+  }
 
-    checkPayment();
+  /**
+   * Perform get request to the payment provider and see if
+   * the status is paid. If not, wait and try again
+   */
+  const checkPayment = () => {
+    fetch(paymentData.check_payment_url, {
+      method: "GET",
+      data: { 'invoice_id': paymentData.order_id },
+      dataType: 'json',
+      ContentType: 'application/json'
+    }).then((response) => {
+      return response.json();
+    }).then((responseData) => {
+      if (responseData['paid'] && injected_data['returnurl']) {
+        window.location.replace(injected_data['returnurl']);
+      } else {
+        setTimeout(checkPayment, 5000);
+      }
+    }).catch((err) => {
+      setTimeout(checkPayment, 5000);
+    })
+  }
 
-    $('#qr_invoice').click(() => {
-        $invoiceText.select();
-        document.execCommand('copy');
-    });
+  // Perform first check
+
+  checkPayment();
+
+  // Event listeners
+
+  document.getElementById('qr_invoice').addEventListener("click", () => {
+    copyToClipboard();
+  })
+
+  $('#qr_invoice').click(() => {
+    copyToClipboard();
+  });
 });

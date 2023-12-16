@@ -48,8 +48,4 @@ document.addEventListener("DOMContentLoaded", function (event) {
   document.getElementById('qr_invoice').addEventListener("click", () => {
     copyToClipboard();
   })
-
-  $('#qr_invoice').click(() => {
-    copyToClipboard();
-  });
 });

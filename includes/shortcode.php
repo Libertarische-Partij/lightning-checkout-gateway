@@ -40,6 +40,14 @@ function getFloatValueFromString($input) {
     return floatval($numericalString);
 }
 
+
+/**
+ * Generic error handler
+ */
+function handleError($error) {
+    return "<p>Error: " . $error->getMessage() . "</p>";
+}
+
 /**
  * Validates the plugin settings.
  *
@@ -83,13 +91,17 @@ function lightning_payment_shortcode($atts = []) {
         $atts = prepareAttributes($atts);
         validateAttributes($atts);
     } catch (Exception $e) {
-        return "<p>Error: " . $e->getMessage() . "</p>";
+        return handleError($e);
     }
 
     $amount = getFloatValueFromString($atts['amount']);
 
     $api = new LightningCheckoutAPI(LNC_API_KEY, LNC_URL, LNC_WEBHOOK_URL);
-    $invoiceData = $api->generateInvoice($amount, $atts['description'] . " (" . $amount . " EUR)");
+    try {
+        $invoiceData = $api->generateInvoice($amount, $atts['description'] . " (" . $amount . " EUR)");
+    } catch (Exception $e) {
+        return handleError($e);
+    }
 
     enqueue_payment_script($atts['returnurl'], $invoiceData);
 

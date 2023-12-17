@@ -5,14 +5,26 @@ document.addEventListener("DOMContentLoaded", function (event) {
   /**
    * Copy the invoice_text to the clipboard.
    */
-  const copyToClipboard = () => {
-    let textToCopy = document.getElementById('invoice_text').innerText;
+  const copyToClipboard = (value) => {
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        console.log('Copied to clipboard')
-      })
+      navigator.clipboard.writeText(value).catch((err) => {
+        console.warn("Copy to clipboard failed:", err);
+        alert("Copy to clipboard failed. Please try again.");
+      });
     } else {
-      console.log('Browser Not compatible')
+      // Fallback for browsers that don't support navigator.clipboard.
+      let textarea = document.createElement("textarea");
+      textarea.textContent = value;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+      } catch (ex) {
+        console.warn("Copy to clipboard failed:", ex);
+        alert("Copy to clipboard failed. Please try again.");
+      } finally {
+        document.body.removeChild(textarea);
+      }
     }
   }
 
@@ -46,6 +58,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
   // Event listeners
 
   document.getElementById('qr_invoice').addEventListener("click", () => {
-    copyToClipboard();
+    copyToClipboard(document.getElementById('invoice_text').innerText);
   })
 });

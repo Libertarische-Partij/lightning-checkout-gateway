@@ -128,7 +128,7 @@ function prepareAttributes($atts) {
  * @param array $invoiceData The invoice data.
  */
 function enqueue_payment_script($returnUrl, $invoiceData) {
-    wp_register_script( 'check-payment', plugins_url('/../js/shortcode.js' , __FILE__), ['jquery'], '1.0', true );
+    wp_register_script( 'check-payment', plugins_url('/../js/shortcode.js' , __FILE__), array(), '1.0', true );
     $injection = array(
         'returnurl' => $returnUrl,
     );

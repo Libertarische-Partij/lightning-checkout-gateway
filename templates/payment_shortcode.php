@@ -43,28 +43,3 @@
 	padding-top: 10px
 }
 </style>
-
-<script type="text/javascript">
-function copyToClipboard(text) {
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(text).catch((err) => {
-            console.warn("Copy to clipboard failed:", err);
-            alert("Copy to clipboard failed. Please try again.");
-        });
-    } else {
-        // Fallback for browsers that don't support navigator.clipboard.
-        let textarea = document.createElement("textarea");
-        textarea.textContent = text;
-        document.body.appendChild(textarea);
-        textarea.select();
-        try {
-            document.execCommand('copy');
-        } catch (ex) {
-            console.warn("Copy to clipboard failed:", ex);
-            alert("Copy to clipboard failed. Please try again.");
-        } finally {
-            document.body.removeChild(textarea);
-        }
-    }
-}
-</script>
